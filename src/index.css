@@ -1,0 +1,193 @@
+:root {
+    --font-sans: 'DM Sans', sans-serif;
+
+    /* Paleta de colores */
+    --color-bg:         #f8f9fa;
+    --color-paper:      #f9fafb;
+    --color-card:       #ffffff;
+
+    --color-ink:        #0f172a;
+    --color-ink-soft:   #334155;
+    --color-muted:      #64748b;
+    --color-muted-light:#94a3b8;
+
+    /* Morado */
+    --color-purple:        #9333ea;
+    --color-purple-dark:   #7e22ce;
+    --color-purple-light:  #f3e8ff;
+    --color-purple-hover:  #7c3aed;
+    --color-purple-border: #e9d5ff;
+
+    /* Alias sky → purple (compatibilidad con header) */
+    --color-sky:       var(--color-purple);
+    --color-sky-dark:  var(--color-purple-dark);
+    --color-sky-light: var(--color-purple-light);
+    --color-sky-hover: var(--color-purple-hover);
+
+    /* Bordes y sombras */
+    --border-hairline:        rgba(15, 23, 42, 0.06);
+    --border-hairline-strong: rgba(15, 23, 42, 0.12);
+    --border-focus:           rgba(147, 51, 234, 0.3);
+    --shadow-focus:           0 0 0 4px rgba(147, 51, 234, 0.18);
+
+    --shadow-sm:    0 2px 6px rgba(15, 23, 42, 0.03);
+    --shadow-md:    0 10px 30px -4px rgba(15, 23, 42, 0.05);
+    --shadow-lg:    0 20px 48px -6px rgba(15, 23, 42, 0.08);
+    --shadow-hover: 0 24px 56px -8px rgba(147, 51, 234, 0.12);
+
+    --radius-sm:   10px;
+    --radius-md:   16px;
+    --radius-lg:   24px;
+    --radius-xl:   32px;
+    --radius-pill: 9999px;
+
+    --transition-fast:   0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    --max-width:         1180px;
+}
+
+/* --------------------------------------------------------------------------
+   Reset base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    position: relative;
+}
+
+#root {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: clip;
+}
+
+main {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    flex: 1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------------
+   Botón base — Estilo píldora púrpura con gradiente y elevación
+   -------------------------------------------------------------------------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: #ffffff !important;
+    background: linear-gradient(180deg, #9d3beb 0%, #7c22ce 100%);
+    box-shadow: 0 8px 22px rgba(124, 34, 206, 0.35);
+    transition:
+        transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(124, 34, 206, 0.45);
+    color: #ffffff !important;
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(124, 34, 206, 0.25);
+}
+
+/* Íconos dentro del botón (Google Material Symbols) */
+.btn .material-symbols-outlined {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.84rem;
+    }
+}
+
+
+
+
+

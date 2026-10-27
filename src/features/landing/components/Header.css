@@ -1,0 +1,341 @@
+/* ==========================================================================
+   HEADER / NAVBAR
+   Arquitectura Grid → Flex con animación elástica GSAP Flip
+   Colores y branding adaptados a softpill (paleta púrpura del proyecto)
+   ========================================================================== */
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1rem clamp(1rem, 4vw, 2.5rem);
+    pointer-events: none;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.nav__inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+    pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   1. Brand / Logo (Izquierda)
+   -------------------------------------------------------------------------- */
+.nav__brand {
+    justify-self: start;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--color-ink, #0f172a);
+    text-decoration: none;
+    padding: 0.62rem 1.15rem;
+    border-radius: 999px;
+    background: transparent;
+    transition: color 0.25s ease;
+    white-space: nowrap;
+}
+
+.nav__brand:hover {
+    color: var(--color-purple, #9333ea);
+}
+
+/* --------------------------------------------------------------------------
+   2. Menú Cápsula (Centro)
+   -------------------------------------------------------------------------- */
+.nav__links {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.4rem;
+    border-radius: 999px;
+    background-color: rgba(10, 10, 10, 0.04);
+}
+
+.nav__link {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-ink-soft, #334155);
+    text-decoration: none;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    transition:
+        background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.nav__link:hover {
+    background-color: #ffffff;
+    color: var(--color-ink, #0f172a);
+    box-shadow: 0 1px 3px rgba(10, 10, 10, 0.05);
+}
+
+.nav__link.is-active {
+    background-color: #ffffff;
+    color: #7c22ce;
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(10, 10, 10, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   3. Acciones & Botón CTA (Derecha)
+   -------------------------------------------------------------------------- */
+.nav__actions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-self: end;
+}
+
+.nav__cta {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   ESTADO SCROLLEADO (.is-stuck) — IDÉNTICO A YAHEL
+   El nav colapsa al centro en píldoras con efecto cristal frosted y gap de 8px
+   ========================================================================== */
+.nav.is-stuck .nav__inner {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.nav.is-stuck .nav__brand,
+.nav.is-stuck .nav__links {
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    backdrop-filter: blur(8px) saturate(140%);
+    box-shadow:
+        1px 1px 1px rgba(255, 255, 255, 0.1) inset,
+        -1px -1px 1px rgba(255, 255, 255, 0.1) inset,
+        0 0 16px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Durante la animación Flip (.is-flipping)
+   Desactivamos transiciones CSS para que no interfieran con la interpolación de GSAP
+   -------------------------------------------------------------------------- */
+.nav.is-flipping .nav__brand,
+.nav.is-flipping .nav__links,
+.nav.is-flipping .nav__link,
+.nav.is-flipping .nav__cta {
+    transition: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Dock Navigation & Responsive Bar
+   -------------------------------------------------------------------------- */
+.mobile-dock {
+    display: none;
+}
+
+@media (max-width: 860px) {
+    .nav {
+        display: none !important;
+        pointer-events: none;
+    }
+
+    .nav__inner {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        pointer-events: auto;
+    }
+
+    .nav__brand {
+        display: none !important;
+    }
+
+    .nav__links {
+        display: none !important;
+    }
+
+    .nav__actions {
+        display: none !important;
+    }
+
+    .nav.is-stuck .nav__inner {
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    /* ── Dock Flotante Inferior (iOS / Phone Dock) ── */
+    .mobile-dock {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        position: fixed;
+        bottom: max(12px, env(safe-area-inset-bottom, 12px));
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 24px);
+        max-width: 440px;
+        height: 62px;
+        padding: 5px 6px;
+        background: rgba(255, 255, 255, 0.88);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        backdrop-filter: blur(24px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 9999px;
+        box-shadow:
+            0 16px 36px -4px rgba(15, 23, 42, 0.16),
+            0 2px 10px rgba(147, 51, 234, 0.08),
+            inset 0 1px 1px rgba(255, 255, 255, 0.95);
+        z-index: 9999;
+        pointer-events: auto;
+        user-select: none;
+        -webkit-user-select: none;
+        box-sizing: border-box;
+    }
+
+    .mobile-dock__item {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        height: 100%;
+        color: #64748b;
+        text-decoration: none;
+        border-radius: 9999px;
+        padding: 3px 2px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+                    color 0.2s ease,
+                    background-color 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+        overflow: hidden;
+    }
+
+    .mobile-dock__item:active {
+        transform: scale(0.9);
+    }
+
+    .mobile-dock__icon {
+        font-size: 22px;
+        line-height: 1;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+    }
+
+    .mobile-dock__label {
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Estado activo */
+    .mobile-dock__item.is-active {
+        color: #7c22ce;
+    }
+
+    .mobile-dock__item.is-active .mobile-dock__icon {
+        transform: translateY(-1px);
+        font-variation-settings: 'FILL' 1;
+    }
+
+    .mobile-dock__item.is-active .mobile-dock__label {
+        font-weight: 700;
+        color: #7c22ce;
+    }
+
+    .mobile-dock__item.is-active::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #7c22ce;
+        box-shadow: 0 0 6px rgba(124, 34, 206, 0.6);
+    }
+
+    /* Botón CTA Iniciar Sesión / Ingresar — Mismo estilo púrpura de los botones principales */
+    .mobile-dock__item--cta {
+        background: linear-gradient(180deg, #9d3beb 0%, #7c22ce 100%);
+        color: #ffffff !important;
+        border: none;
+        box-shadow: 0 4px 14px rgba(124, 34, 206, 0.38);
+        margin: 0 2px;
+    }
+
+    .mobile-dock__item--cta .mobile-dock__icon {
+        color: #ffffff !important;
+    }
+
+    .mobile-dock__item--cta .mobile-dock__label {
+        font-weight: 700;
+        color: #ffffff !important;
+    }
+
+    .mobile-dock__item--cta:active {
+        transform: scale(0.94);
+        box-shadow: 0 2px 8px rgba(124, 34, 206, 0.25);
+    }
+
+    .mobile-dock__item--cta.is-active {
+        background: linear-gradient(180deg, #8b25d6 0%, #6b1cb2 100%);
+        color: #ffffff !important;
+        border-color: transparent;
+        box-shadow: 0 4px 16px rgba(124, 34, 206, 0.45);
+    }
+
+    .mobile-dock__item--cta.is-active .mobile-dock__icon,
+    .mobile-dock__item--cta.is-active .mobile-dock__label {
+        color: #ffffff !important;
+    }
+
+    .mobile-dock__item--cta::after,
+    .mobile-dock__item--cta.is-active::after {
+        display: none !important;
+    }
+}
+
+/* Para pantallas angostas (< 400px) */
+@media (max-width: 400px) {
+    .mobile-dock {
+        height: 58px;
+        padding: 4px;
+        width: calc(100% - 16px);
+    }
+    .mobile-dock__icon {
+        font-size: 20px;
+    }
+    .mobile-dock__label {
+        font-size: 8.5px;
+    }
+}
+
+@media (max-width: 340px) {
+    .mobile-dock {
+        height: 52px;
+        padding: 3px 2px;
+    }
+    .mobile-dock__icon {
+        font-size: 18px;
+    }
+    .mobile-dock__label {
+        font-size: 7.5px;
+    }
+}

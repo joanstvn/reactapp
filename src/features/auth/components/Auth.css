@@ -1,0 +1,492 @@
+/* --------------------------------------------------------------------------
+   Feature Auth — Estilos compartidos para todos los formularios de autenticación
+   Paleta púrpura de softapp · DM Sans · Diseño minimalista
+   -------------------------------------------------------------------------- */
+
+/* ===== Contenedor principal ===== */
+.auth-container {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    padding: 32px 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Luz ambiental sutil púrpura */
+.auth__ambient {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(156, 59, 235, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===== Botón cerrar / volver ===== */
+.auth__close-btn {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #f4f4f5;
+    border: none;
+    color: #52525b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
+    padding: 0;
+}
+
+.auth__close-btn:hover {
+    background: #e4e4e7;
+    color: #18181b;
+    transform: scale(1.06);
+}
+
+.auth__close-btn:active {
+    transform: scale(0.94);
+}
+
+.auth__close-btn .material-symbols-outlined {
+    font-size: 22px;
+    line-height: 1;
+}
+
+/* ===== Tarjeta / Contenedor central ===== */
+.auth__card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: authFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes authFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Título y subtítulo ===== */
+.auth__title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.35rem;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    color: #111827;
+    margin: 0 0 8px 0;
+    line-height: 1.15;
+}
+
+.auth__subtitle {
+    font-size: 1.05rem;
+    color: #6b7280;
+    margin: 0 0 32px 0;
+    line-height: 1.5;
+    max-width: 340px;
+}
+
+/* ===== Formulario ===== */
+.auth__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ===== Contenedor del campo ===== */
+.auth__field {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    border-radius: 18px;
+    padding: 11px 18px;
+    text-align: left;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    cursor: text;
+}
+
+.auth__field:focus-within {
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(156, 59, 235, 0.195);
+}
+
+.auth__label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 3px;
+    transition: color 0.2s;
+    cursor: text;
+}
+
+.auth__field:focus-within .auth__label {
+    color: #7c22ce;
+}
+
+.auth__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: text;
+}
+
+.auth__input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.4;
+    color: #111827;
+    padding: 2px 32px 2px 0;
+    margin: 0;
+}
+
+/* Si no hay botón toggle, quitar padding derecho extra */
+.auth__input:only-child {
+    padding-right: 0;
+}
+
+.auth__input::placeholder {
+    color: #9ca3af;
+    opacity: 0.75;
+}
+
+/* ===== Botón toggle password ===== */
+.auth__toggle-pw {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 4px;
+    color: #9ca3af;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 6px;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.auth__toggle-pw:hover {
+    color: #18181b;
+}
+
+.auth__toggle-pw .material-symbols-outlined {
+    font-size: 20px;
+    line-height: 1;
+    display: block;
+}
+
+/* ===== Botón submit principal ===== */
+.auth__submit-btn {
+    width: 100% !important;
+    height: 52px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 6px;
+    border-radius: 9999px;
+}
+
+/* ===== Botón Google ===== */
+.auth__google-btn {
+    width: 100%;
+    height: 52px;
+    border-radius: 9999px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.auth__google-btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+.auth__google-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== Divisor con "o" ===== */
+.auth__divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+    margin: 6px 0;
+}
+
+.auth__divider::before,
+.auth__divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.auth__divider span {
+    font-size: 0.84rem;
+    color: #9ca3af;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+
+/* ===== Botones de elección (AuthChoice) ===== */
+.auth__choices {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.auth__choice-btn {
+    width: 100%;
+    height: 56px;
+    border-radius: 9999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.auth__choice-btn--primary {
+    color: #ffffff;
+    background: linear-gradient(180deg, #9d3beb 0%, #7c22ce 100%);
+    box-shadow: 0 8px 22px rgba(124, 34, 206, 0.35);
+    border: none;
+}
+
+.auth__choice-btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(124, 34, 206, 0.45);
+}
+
+.auth__choice-btn--primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(124, 34, 206, 0.25);
+}
+
+.auth__choice-btn--secondary {
+    color: #374151;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.auth__choice-btn--secondary:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+.auth__choice-btn--secondary:active {
+    transform: translateY(0);
+}
+
+.auth__choice-btn .material-symbols-outlined {
+    font-size: 20px;
+    line-height: 1;
+}
+
+/* ===== Enlace Olvidé mi contraseña ===== */
+.auth__forgot-btn {
+    margin-top: 24px;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.94rem;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 4px 8px;
+}
+
+.auth__forgot-btn:hover {
+    color: #7c22ce;
+    text-decoration: underline;
+}
+
+/* ===== Switch link (¿Ya tienes cuenta? / ¿No tienes cuenta?) ===== */
+.auth__switch {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.auth__switch-link {
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #7c22ce;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.auth__switch-link:hover {
+    color: #9d3beb;
+    text-decoration: underline;
+}
+
+/* ===== Términos ===== */
+.auth__terms {
+    margin-top: 36px;
+    font-size: 0.78rem;
+    color: #9ca3af;
+    line-height: 1.5;
+    max-width: 320px;
+}
+
+.auth__terms-link {
+    color: #6b7280;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.auth__terms-link:hover {
+    color: #7c22ce;
+}
+
+/* ===== Mensaje de éxito (recuperar contraseña) ===== */
+.auth__success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: authFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.auth__success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(156, 59, 235, 0.1) 0%, rgba(124, 34, 206, 0.06) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.auth__success-icon .material-symbols-outlined {
+    font-size: 32px;
+    color: #7c22ce;
+    line-height: 1;
+}
+
+.auth__success-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.auth__success-text {
+    font-size: 0.92rem;
+    color: #6b7280;
+    line-height: 1.5;
+    max-width: 300px;
+    margin: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 60px 16px;
+        justify-content: center;
+    }
+
+    .auth__close-btn {
+        top: 16px;
+        left: 16px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .auth__title {
+        font-size: 2rem;
+        margin-bottom: 6px;
+    }
+
+    .auth__subtitle {
+        font-size: 0.96rem;
+        margin-bottom: 24px;
+    }
+
+    .auth__field {
+        border-radius: 16px;
+        padding: 10px 16px;
+    }
+
+    .auth__submit-btn,
+    .auth__google-btn,
+    .auth__choice-btn {
+        height: 48px;
+        font-size: 0.94rem;
+    }
+
+    .auth__terms {
+        margin-top: 28px;
+    }
+}
