@@ -2,16 +2,14 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="%BASE_URL%softapp-icon.png" sizes="256x256" />
+    <link rel="apple-touch-icon" href="%BASE_URL%softapp-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>softapp</title>
-
-     <!-- Añadir el favicon de la web -->
-    <link rel="icon" type="image/x-icon" href="public/softapp-icon.png" />
+    <title>softapp | React y Progressive Web Apps</title>
 
     <!-- TAGS SEO -->
     <meta name="author"      content="softapp Core Labs" />
-    <meta name="description" content="softapp — Plataforma de vanguardia para arquitecturas React 19 y Progressive Web Apps: Service Workers, navegación offline-first, Lighthouse 100 y sincronización en segundo plano." />
+    <meta name="description" content="softapp — Sitio informativo y demostrativo sobre React 19 y Progressive Web Apps, con ejemplos de navegación, instalación y experiencia offline." />
     <meta name="keywords"    content="react, pwa, progressive web apps, service workers, react 19, vite, workbox, offline-first, web app manifest, softapp" />
     <meta name="robots"      content="index, follow" />
 
@@ -22,24 +20,6 @@
     <meta name="mobile-web-app-capable"                content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <!-- Google Fonts: DM Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
-
-    <!-- Material Symbols Outlined (íconos) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          if (!window._swReloading) {
-            window._swReloading = true;
-            window.location.reload();
-          }
-        });
-      }
-    </script>
   </head>
   <body>
     <div id="root"></div>

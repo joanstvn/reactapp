@@ -13,7 +13,10 @@ export const AuthLayout = ({ children, backTo = '/' }) => {
     const navigate = useNavigate();
 
     return (
-        <section className="auth-container" aria-label="Autenticación">
+        <>
+            <a className="skip-link" href="#main-content">Saltar al contenido principal</a>
+            <main id="main-content">
+                <section className="auth-container" aria-label="Autenticación">
             <div className="auth__ambient" aria-hidden="true" />
 
             <button
@@ -30,6 +33,8 @@ export const AuthLayout = ({ children, backTo = '/' }) => {
             <div className="auth__card">
                 {children}
             </div>
-        </section>
+                </section>
+            </main>
+        </>
     );
 };

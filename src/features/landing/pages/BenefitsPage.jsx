@@ -115,7 +115,7 @@ export const BenefitsPage = () => {
                                 <div className="feature-card__icon">
                                     <span className="material-symbols-outlined">{iconName}</span>
                                 </div>
-                                <h3 className="feature-card__title">{title}</h3>
+                                <h2 className="feature-card__title">{title}</h2>
                                 <p className="feature-card__desc">{description}</p>
                             </article>
                         ))}

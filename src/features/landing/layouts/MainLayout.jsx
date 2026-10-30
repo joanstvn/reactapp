@@ -13,8 +13,11 @@ export const MainLayout = () => {
 
     return (
         <>
+            <a className="skip-link" href="#main-content">Saltar al contenido principal</a>
             <Header />
-            <Outlet />
+            <main id="main-content">
+                <Outlet />
+            </main>
             <Footer key={pathname} />
         </>
     );

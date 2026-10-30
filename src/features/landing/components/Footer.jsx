@@ -134,7 +134,12 @@ export const Footer = () => {
 
             {/* Watermark con softapp en DM Sans */}
             <div className="footer__watermark" aria-hidden="true">
-                softapp
+                <img
+                    src={`${import.meta.env.BASE_URL}softapp-watermark.svg`}
+                    alt=""
+                    width="2000"
+                    height="470"
+                />
             </div>
 
             {/* Difuminado suave inferior */}

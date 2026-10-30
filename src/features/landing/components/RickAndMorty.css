@@ -1,0 +1,294 @@
+/* --------------------------------------------------------------------------
+   Rick and Morty — Estilos del módulo de consumo de API
+   Paleta neutral + acentos de softapp · DM Sans · Diseño minimalista
+   -------------------------------------------------------------------------- */
+
+/* ===== Layout principal ===== */
+.rm {
+    padding: clamp(100px, 12vh, 130px) 24px clamp(80px, 10vh, 120px);
+    max-width: 1180px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+.rm__header {
+    margin-bottom: 2rem;
+}
+
+.rm__title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-ink, #0f172a);
+    margin: 0;
+}
+
+.rm__subtitle {
+    color: #64748b;
+    font-size: 1.05rem;
+    margin-top: 0.5rem;
+}
+
+.rm__api-link {
+    color: #7c22ce;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.rm__api-link:hover {
+    color: #9d3beb;
+}
+
+/* ===== Controles: búsqueda ===== */
+.rm__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rm__search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+    max-width: 400px;
+}
+
+.rm__search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.rm__search {
+    width: 100%;
+    padding: 12px 22px 12px 48px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    border: 0px solid #e5e7eb;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #111827;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.rm__search:focus {
+    border-color: #d1d5db;
+    box-shadow: 0 0 0 4px rgba(124, 34, 206, 0.08);
+}
+
+.rm__search::placeholder {
+    color: #9ca3af;
+}
+
+.rm-card__dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.rm-card__dot--alive {
+    background: #22c55e;
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+}
+
+.rm-card__dot--dead {
+    background: #ef4444;
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+}
+
+.rm-card__dot--unknown {
+    background: #9ca3af;
+    box-shadow: 0 0 6px rgba(156, 163, 175, 0.4);
+}
+
+/* ===== Contador ===== */
+.rm__count {
+    font-size: 0.88rem;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* ===== Estados: loading / vacío ===== */
+.rm__status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 80px 24px;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.rm__spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #7c22ce;
+    border-radius: 50%;
+    animation: rmSpin 0.7s linear infinite;
+}
+
+@keyframes rmSpin {
+    to { transform: rotate(360deg); }
+}
+
+.rm__empty-icon {
+    font-size: 48px;
+    color: #d1d5db;
+}
+
+/* ===== Grid de tarjetas ===== */
+.rm__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+/* ===== Tarjeta de personaje ===== */
+.rm-card {
+    background: #f3f4f6;
+    border-radius: clamp(18px, 2vw, 22px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.rm-card__img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+}
+
+.rm-card__body {
+    padding: 16px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.rm-card__name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111827;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.rm-card__meta {
+    display: flex;
+    align-items: center;
+    font-size: 0.88rem;
+    color: #4b5563;
+    margin: 0;
+}
+
+.rm-card__location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.84rem;
+    color: #5b6472;
+    margin: 2px 0 0;
+}
+
+.rm-card__loc-icon {
+    font-size: 16px;
+    color: #9ca3af;
+}
+
+/* ===== Paginación ===== */
+.rm__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding: 8px 0;
+}
+
+.rm__page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.rm__page-btn:hover:not(:disabled) {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+.rm__page-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.rm__page-btn .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.rm__page-info {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #111827;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+    .rm {
+        padding: clamp(90px, 10vh, 110px) 16px 60px;
+    }
+
+    .rm__controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .rm__search-wrap {
+        max-width: none;
+    }
+
+    .rm__grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+
+    .rm-card__body {
+        padding: 12px 14px 16px;
+    }
+
+    .rm-card__name {
+        font-size: 0.98rem;
+    }
+}

@@ -3,11 +3,24 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const rickAndMortyProxy = {
+  '/api/rick-and-morty': {
+    target: 'https://rickandmortyapi.com',
+    changeOrigin: true,
+    rewrite: (path) => path.replace(/^\/api\/rick-and-morty/, '/api')
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_PAGES === 'true' ? '/reactapp/' : '/',
   server: {
     host: true,
-    allowedHosts: true
+    allowedHosts: true,
+    proxy: rickAndMortyProxy
+  },
+  preview: {
+    proxy: rickAndMortyProxy
   },
   resolve: {
     alias: {
@@ -19,21 +32,22 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
-        enabled: true
+        enabled: false
       },
       workbox: {
         globPatterns: ['**/*.{js,jsx,css,html,ico,png,svg}'],
+        globIgnores: ['**/pwa-1280x720.png'],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
       },
-      includeAssets: ['favicon.svg', 'pwa-1280x720.png', 'pwa-720x1280.png'],
       manifest: {
         name: 'softapp',
         short_name: 'softapp',
         description: 'Plataforma para desarrollo de Progressive Web Apps y ecosistema React 19',
-        scope: '/',
-        start_url: '/',
+        lang: 'es',
+        scope: './',
+        start_url: './',
         display: 'standalone',
         theme_color: '#9333ea',
         screenshots: [
@@ -42,12 +56,6 @@ export default defineConfig({
             sizes: '1280x720',
             type: 'image/png',
             form_factor: 'wide'
-          },
-          {
-            src: 'pwa-720x1280.png',
-            sizes: '720x1280',
-            type: 'image/png',
-            form_factor: 'narrow'
           }
         ],
         icons: [

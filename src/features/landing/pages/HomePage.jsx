@@ -182,7 +182,7 @@ export const HomePage = () => {
     }, []);
 
     return (
-        <main id="top" ref={pageRef}>
+        <section id="top" ref={pageRef}>
             {/* ── Hero Panel ── */}
             <section className="hero">
                 <div className="hero__panel">
@@ -367,6 +367,6 @@ export const HomePage = () => {
                     </div>
                 </div>
             </section>
-        </main>
+        </section>
     );
 };

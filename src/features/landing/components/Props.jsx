@@ -1,10 +1,10 @@
 /**
- * Genera la URL de la imagen del avatar usando la API de Imgur.
+ * Builds a public Imgur thumbnail URL for each scientist avatar.
  *
- * @param {Object} person - Objeto con los datos de la persona científica.
- * @param {string} person.imageId - Identificador de la imagen en Imgur.
- * @param {number|string} [size='s'] - Tamaño en píxeles o sufijo de tamaño ('s' o 'b').
- * @returns {string} URL pública y accesible de la imagen.
+ * @param {Object} person
+ * @param {string} person.imageId Imgur image identifier.
+ * @param {number|string} [size='s']
+ * @returns {string} Public Imgur image URL.
  */
 const getImageUrl = (person, size = 's') => {
     const sizeSuffix = typeof size === 'number' ? (size < 90 ? 's' : 'b') : size;

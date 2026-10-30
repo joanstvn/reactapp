@@ -169,7 +169,7 @@ export const Header = () => {
                 <NavLink
                     to="/rick-and-morty"
                     className={({ isActive }) => `mobile-dock__item ${isActive ? 'is-active' : ''}`}
-                    aria-label="Ir a Rick and Morty"
+                    aria-label="Rick & Morty"
                 >
                     <span className="material-symbols-outlined mobile-dock__icon" aria-hidden="true">science</span>
                     <span className="mobile-dock__label">Rick & Morty</span>
@@ -188,7 +188,7 @@ export const Header = () => {
                 <NavLink
                     to="/login"
                     className={({ isActive }) => `mobile-dock__item mobile-dock__item--cta ${isActive ? 'is-active' : ''}`}
-                    aria-label="Iniciar sesión o registrarse"
+                    aria-label="Acceder"
                 >
                     <span className="material-symbols-outlined mobile-dock__icon" aria-hidden="true">account_circle</span>
                     <span className="mobile-dock__label">Acceder</span>

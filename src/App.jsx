@@ -1,36 +1,37 @@
-import { Routes, Route } from 'react-router-dom';
-import { MainLayout } from '@/features/landing/layouts/MainLayout';
-import { HomePage } from '@/features/landing/pages/HomePage';
-import { BenefitsPage } from '@/features/landing/pages/BenefitsPage';
-import { FaqPage } from '@/features/landing/pages/FaqPage';
-import { PropsPage } from '@/features/landing/pages/PropsPage';
-import { AuthChoice } from '@/features/auth/components/AuthChoice';
-import { LoginForm } from '@/features/auth/components/LoginForm';
-import { RegisterForm } from '@/features/auth/components/RegisterForm';
-import { RecoverPassword } from '@/features/auth/components/RecoverPassword';
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { useSmoothScroll } from '@/features/landing/components/UseSmoothScroll';
-import { RickAndMorty } from '@/features/landing/components/RickAndMorty';
+
+const MainLayout = lazy(() => import('@/features/landing/layouts/MainLayout').then((m) => ({ default: m.MainLayout })));
+const HomePage = lazy(() => import('@/features/landing/pages/HomePage').then((m) => ({ default: m.HomePage })));
+const BenefitsPage = lazy(() => import('@/features/landing/pages/BenefitsPage').then((m) => ({ default: m.BenefitsPage })));
+const FaqPage = lazy(() => import('@/features/landing/pages/FaqPage').then((m) => ({ default: m.FaqPage })));
+const PropsPage = lazy(() => import('@/features/landing/pages/PropsPage').then((m) => ({ default: m.PropsPage })));
+const RickAndMorty = lazy(() => import('@/features/landing/components/RickAndMorty').then((m) => ({ default: m.RickAndMorty })));
+const AuthChoice = lazy(() => import('@/features/auth/components/AuthChoice').then((m) => ({ default: m.AuthChoice })));
+const LoginForm = lazy(() => import('@/features/auth/components/LoginForm').then((m) => ({ default: m.LoginForm })));
+const RegisterForm = lazy(() => import('@/features/auth/components/RegisterForm').then((m) => ({ default: m.RegisterForm })));
+const RecoverPassword = lazy(() => import('@/features/auth/components/RecoverPassword').then((m) => ({ default: m.RecoverPassword })));
 
 const App = () => {
     useSmoothScroll();
 
     return (
-        <Routes>
-            {/* Rutas principales con Header, Footer y scroll reset coordinados */}
-            <Route element={<MainLayout />}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/beneficios" element={<BenefitsPage />} />
-                <Route path="/faq" element={<FaqPage />} />
-                <Route path="/rick-and-morty" element={<RickAndMorty />} />
-                <Route path="/props" element={<PropsPage />} />
-            </Route>
-
-            {/* Rutas de autenticación y portal de desarrolladores */}
-            <Route path="/login" element={<AuthChoice />} />
-            <Route path="/login/iniciar-sesion" element={<LoginForm />} />
-            <Route path="/login/crear-cuenta" element={<RegisterForm />} />
-            <Route path="/login/recuperar" element={<RecoverPassword />} />
-        </Routes>
+        <Suspense fallback={null}>
+            <Routes>
+                <Route element={<MainLayout />}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/beneficios" element={<BenefitsPage />} />
+                    <Route path="/faq" element={<FaqPage />} />
+                    <Route path="/rick-and-morty" element={<RickAndMorty />} />
+                    <Route path="/props" element={<PropsPage />} />
+                </Route>
+                <Route path="/login" element={<AuthChoice />} />
+                <Route path="/login/iniciar-sesion" element={<LoginForm />} />
+                <Route path="/login/crear-cuenta" element={<RegisterForm />} />
+                <Route path="/login/recuperar" element={<RecoverPassword />} />
+            </Routes>
+        </Suspense>
     );
 };
 
